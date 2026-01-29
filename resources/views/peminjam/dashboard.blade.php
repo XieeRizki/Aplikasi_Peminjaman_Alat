@@ -1,163 +1,160 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Riwayat Peminjaman</h2>
-        <p class="page-subtitle">Kelola peminjaman alat anda</p>
-    </div>
-    <div class="header-date">
-        <span id="currentDate"></span>
-    </div>
-</div>
-
-<!-- User Stats -->
-<div class="stats-grid">
-    <div class="stat-card stat-primary">
-        <div class="stat-icon">
-            <i class="icon-borrowed"></i>
+<div class="dashboard-wrapper">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="dashboard-title">Riwayat Peminjaman</h1>
+            <p class="dashboard-subtitle">Kelola peminjaman alat anda</p>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Sedang Dipinjam</p>
-            <h3 class="stat-value">2</h3>
-            <span class="stat-change">→ Alat aktif</span>
+        <div class="header-actions">
+            <div class="date-display" id="currentDate"></div>
         </div>
     </div>
 
-    <div class="stat-card stat-success">
-        <div class="stat-icon">
-            <i class="icon-history"></i>
+    <!-- KPI Cards Section - 4 in 1 line -->
+    <div class="kpi-section">
+        <div class="kpi-card kpi-active">
+            <div class="kpi-icon">📌</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Sedang Dipinjam</div>
+                <div class="kpi-value">2</div>
+                <div class="kpi-meta">→ Alat aktif</div>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Total Peminjaman</p>
-            <h3 class="stat-value">15</h3>
-            <span class="stat-change">→ Seumur hidup</span>
+
+        <div class="kpi-card kpi-total">
+            <div class="kpi-icon">📚</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Total Peminjaman</div>
+                <div class="kpi-value">15</div>
+                <div class="kpi-meta">→ Seumur hidup</div>
+            </div>
+        </div>
+
+        <div class="kpi-card kpi-soon">
+            <div class="kpi-icon">⏰</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Segera Dikembalikan</div>
+                <div class="kpi-value">1</div>
+                <div class="kpi-meta">→ Dalam 2 hari</div>
+            </div>
+        </div>
+
+        <div class="kpi-card kpi-rating">
+            <div class="kpi-icon">⭐</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Rating Anda</div>
+                <div class="kpi-value">4.8</div>
+                <div class="kpi-meta">→ Terpercaya</div>
+            </div>
         </div>
     </div>
 
-    <div class="stat-card stat-warning">
-        <div class="stat-icon">
-            <i class="icon-deadline"></i>
-        </div>
-        <div class="stat-content">
-            <p class="stat-label">Segera Dikembalikan</p>
-            <h3 class="stat-value">1</h3>
-            <span class="stat-change">→ Dalam 2 hari</span>
-        </div>
+    <!-- Action Button -->
+    <div class="action-buttons-bar">
+        <button class="btn btn-large btn-primary">+ Ajukan Peminjaman</button>
     </div>
 
-    <div class="stat-card stat-info">
-        <div class="stat-icon">
-            <i class="icon-rating"></i>
-        </div>
-        <div class="stat-content">
-            <p class="stat-label">Rating Anda</p>
-            <h3 class="stat-value">⭐ 4.8</h3>
-            <span class="stat-change">→ Peminjam terpercaya</span>
-        </div>
-    </div>
-</div>
-
-<!-- Action Button -->
-<div class="action-bar">
-    <button class="btn btn-primary">+ Ajukan Peminjaman Baru</button>
-</div>
-
-<!-- Active Borrowings -->
-<div class="recent-section">
-    <div class="section-header">
-        <h3>Alat yang Sedang Dipinjam</h3>
-    </div>
-
-    <div class="borrow-cards">
+    <!-- Active Borrowings Section -->
+    <div class="section-title">Alat yang Sedang Dipinjam</div>
+    <div class="borrow-cards-grid">
         <div class="borrow-card">
-            <div class="card-status status-active">Sedang Dipinjam</div>
-            <h4 class="card-title">Laptop Dell XPS 13</h4>
-            <div class="card-details">
-                <div class="detail-row">
+            <div class="borrow-status">Sedang Dipinjam</div>
+            <h4 class="borrow-title">Laptop Dell XPS 13</h4>
+            <div class="borrow-details">
+                <div class="borrow-detail-row">
                     <span class="label">Tanggal Pinjam:</span>
                     <span class="value">25-01-2026</span>
                 </div>
-                <div class="detail-row">
+                <div class="borrow-detail-row">
                     <span class="label">Jatuh Tempo:</span>
                     <span class="value">27-01-2026</span>
                 </div>
-                <div class="detail-row">
+                <div class="borrow-detail-row">
                     <span class="label">Sisa Waktu:</span>
-                    <span class="value highlight">2 hari</span>
+                    <span class="value value-highlight">2 hari</span>
                 </div>
             </div>
-            <button class="btn btn-small btn-primary">Kembalikan</button>
+            <button class="btn btn-medium btn-primary">Kembalikan</button>
         </div>
 
         <div class="borrow-card">
-            <div class="card-status status-active">Sedang Dipinjam</div>
-            <h4 class="card-title">Proyektor Epson EB-2250U</h4>
-            <div class="card-details">
-                <div class="detail-row">
+            <div class="borrow-status">Sedang Dipinjam</div>
+            <h4 class="borrow-title">Proyektor Epson EB-2250U</h4>
+            <div class="borrow-details">
+                <div class="borrow-detail-row">
                     <span class="label">Tanggal Pinjam:</span>
                     <span class="value">26-01-2026</span>
                 </div>
-                <div class="detail-row">
+                <div class="borrow-detail-row">
                     <span class="label">Jatuh Tempo:</span>
                     <span class="value">30-01-2026</span>
                 </div>
-                <div class="detail-row">
+                <div class="borrow-detail-row">
                     <span class="label">Sisa Waktu:</span>
                     <span class="value">4 hari</span>
                 </div>
             </div>
-            <button class="btn btn-small btn-primary">Kembalikan</button>
+            <button class="btn btn-medium btn-primary">Kembalikan</button>
         </div>
     </div>
-</div>
 
-<!-- Borrowing History -->
-<div class="recent-section">
-    <div class="section-header">
-        <h3>Riwayat Peminjaman</h3>
-        <a href="#" class="link-view-all">Lihat Semua →</a>
-    </div>
-
-    <div class="table-wrapper">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Alat</th>
-                    <th>Tanggal Pinjam</th>
-                    <th>Tanggal Kembali</th>
-                    <th>Durasi</th>
-                    <th>Kondisi</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="font-medium">Kamera Canon EOS</span></td>
-                    <td>10-01-2026</td>
-                    <td>12-01-2026</td>
-                    <td>2 hari</td>
-                    <td><span class="badge badge-success">Baik</span></td>
-                    <td><span class="badge badge-success">Selesai</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-medium">Microphone Condenser</span></td>
-                    <td>05-01-2026</td>
-                    <td>07-01-2026</td>
-                    <td>2 hari</td>
-                    <td><span class="badge badge-success">Baik</span></td>
-                    <td><span class="badge badge-success">Selesai</span></td>
-                </tr>
-                <tr>
-                    <td><span class="font-medium">Speaker JBL</span></td>
-                    <td>01-01-2026</td>
-                    <td>03-01-2026</td>
-                    <td>2 hari</td>
-                    <td><span class="badge badge-success">Baik</span></td>
-                    <td><span class="badge badge-success">Selesai</span></td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Borrowing History Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <h3>Riwayat Peminjaman</h3>
+            <a href="#" class="link-view-more">Lihat Semua →</a>
+        </div>
+        <div class="table-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Alat</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Tanggal Kembali</th>
+                        <th>Durasi</th>
+                        <th>Kondisi</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="font-bold">Kamera Canon EOS R5</span></td>
+                        <td>10-01-2026</td>
+                        <td>12-01-2026</td>
+                        <td>2 hari</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td><span class="badge badge-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-bold">Microphone Rode Wireless</span></td>
+                        <td>05-01-2026</td>
+                        <td>07-01-2026</td>
+                        <td>2 hari</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td><span class="badge badge-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-bold">Speaker JBL Professional</span></td>
+                        <td>01-01-2026</td>
+                        <td>03-01-2026</td>
+                        <td>2 hari</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td><span class="badge badge-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="font-bold">Tripod Profesional</span></td>
+                        <td>15-12-2025</td>
+                        <td>17-12-2025</td>
+                        <td>2 hari</td>
+                        <td><span class="badge badge-warning">Rusak Ringan</span></td>
+                        <td><span class="badge badge-success">Selesai</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

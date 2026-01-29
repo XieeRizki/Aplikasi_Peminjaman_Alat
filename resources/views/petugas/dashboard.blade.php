@@ -1,177 +1,225 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-header">
-    <div>
-        <h2 class="page-title">Dashboard Petugas</h2>
-        <p class="page-subtitle">Kelola peminjaman dan pengembalian alat</p>
-    </div>
-    <div class="header-date">
-        <span id="currentDate"></span>
-    </div>
-</div>
-
-<!-- Quick Stats -->
-<div class="stats-grid">
-    <div class="stat-card stat-primary">
-        <div class="stat-icon">
-            <i class="icon-inbox"></i>
+<div class="dashboard-wrapper">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="dashboard-title">Dashboard Petugas</h1>
+            <p class="dashboard-subtitle">Kelola peminjaman dan pengembalian alat</p>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Peminjaman Hari Ini</p>
-            <h3 class="stat-value">8</h3>
-            <span class="stat-change">→ Menunggu konfirmasi</span>
+        <div class="header-actions">
+            <div class="date-display" id="currentDate"></div>
         </div>
     </div>
 
-    <div class="stat-card stat-success">
-        <div class="stat-icon">
-            <i class="icon-return"></i>
+    <!-- KPI Cards Section - 4 in 1 line -->
+    <div class="kpi-section">
+        <div class="kpi-card kpi-pending">
+            <div class="kpi-icon">📥</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Peminjaman Hari Ini</div>
+                <div class="kpi-value">8</div>
+                <div class="kpi-meta">→ Menunggu konfirmasi</div>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Pengembalian Hari Ini</p>
-            <h3 class="stat-value">5</h3>
-            <span class="stat-change">→ Sudah dikembalikan</span>
+
+        <div class="kpi-card kpi-returned">
+            <div class="kpi-icon">📤</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Pengembalian Hari Ini</div>
+                <div class="kpi-value">5</div>
+                <div class="kpi-meta">→ Sudah diproses</div>
+            </div>
+        </div>
+
+        <div class="kpi-card kpi-verify">
+            <div class="kpi-icon">⏳</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Verifikasi Pending</div>
+                <div class="kpi-value">12</div>
+                <div class="kpi-meta">→ Perlu pengecekan</div>
+            </div>
+        </div>
+
+        <div class="kpi-card kpi-monthly">
+            <div class="kpi-icon">📊</div>
+            <div class="kpi-content">
+                <div class="kpi-label">Total Bulan Ini</div>
+                <div class="kpi-value">156</div>
+                <div class="kpi-meta">→ Transaksi</div>
+            </div>
         </div>
     </div>
 
-    <div class="stat-card stat-warning">
-        <div class="stat-icon">
-            <i class="icon-pending"></i>
+    <!-- Action Buttons -->
+    <div class="action-buttons-bar">
+        <button class="btn btn-large btn-primary">+ Peminjaman Baru</button>
+        <button class="btn btn-large btn-success">+ Pengembalian</button>
+        <button class="btn btn-large btn-secondary">📋 Laporan</button>
+    </div>
+
+    <!-- Dual Tables Section -->
+    <div class="dual-tables">
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Permintaan Menunggu</h3>
+                <a href="#" class="link-view-more">Lihat →</a>
+            </div>
+            <div class="table-body">
+                <table class="data-table data-table-compact">
+                    <thead>
+                        <tr>
+                            <th>Peminjam</th>
+                            <th>Alat</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="font-bold">Mahasiswa A</span></td>
+                            <td>Laptop</td>
+                            <td><span class="badge badge-warning">Menunggu</span></td>
+                            <td>
+                                <div class="action-buttons-compact">
+                                    <button class="btn-action btn-approve">✓</button>
+                                    <button class="btn-action btn-reject">✕</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Mahasiswa B</span></td>
+                            <td>Kamera</td>
+                            <td><span class="badge badge-warning">Menunggu</span></td>
+                            <td>
+                                <div class="action-buttons-compact">
+                                    <button class="btn-action btn-approve">✓</button>
+                                    <button class="btn-action btn-reject">✕</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Mahasiswa C</span></td>
+                            <td>Proyektor</td>
+                            <td><span class="badge badge-warning">Menunggu</span></td>
+                            <td>
+                                <div class="action-buttons-compact">
+                                    <button class="btn-action btn-approve">✓</button>
+                                    <button class="btn-action btn-reject">✕</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Menunggu Verifikasi</p>
-            <h3 class="stat-value">12</h3>
-            <span class="stat-change">→ Perlu pengecekan</span>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Peminjaman Aktif</h3>
+                <a href="#" class="link-view-more">Lihat →</a>
+            </div>
+            <div class="table-body">
+                <table class="data-table data-table-compact">
+                    <thead>
+                        <tr>
+                            <th>Peminjam</th>
+                            <th>Alat</th>
+                            <th>Jatuh Tempo</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="font-bold">Andi Wijaya</span></td>
+                            <td>Laptop</td>
+                            <td>27-01-2026</td>
+                            <td><span class="badge badge-warning">Dipinjam</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Sinta Kusuma</span></td>
+                            <td>Proyektor</td>
+                            <td>29-01-2026</td>
+                            <td><span class="badge badge-success">Tepat</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="font-bold">Budi Santoso</span></td>
+                            <td>Kamera</td>
+                            <td>28-01-2026</td>
+                            <td><span class="badge badge-danger">Terlambat</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="stat-card stat-info">
-        <div class="stat-icon">
-            <i class="icon-total"></i>
+    <!-- All Transactions Table -->
+    <div class="table-container">
+        <div class="table-header">
+            <h3>Semua Transaksi Hari Ini</h3>
+            <a href="#" class="link-view-more">Lihat Semua →</a>
         </div>
-        <div class="stat-content">
-            <p class="stat-label">Total Peminjaman</p>
-            <h3 class="stat-value">156</h3>
-            <span class="stat-change">→ Bulan ini</span>
+        <div class="table-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Peminjam</th>
+                        <th>Alat</th>
+                        <th>Tipe</th>
+                        <th>Waktu</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="text-code">#PJM001</span></td>
+                        <td>Andi Wijaya</td>
+                        <td><span class="font-bold">Laptop</span></td>
+                        <td><span class="badge badge-primary">Peminjaman</span></td>
+                        <td>09:30</td>
+                        <td><span class="badge badge-warning">Dipinjam</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-edit">✏</button>
+                                <button class="btn-action btn-delete">🗑</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-code">#PJM002</span></td>
+                        <td>Sinta Kusuma</td>
+                        <td><span class="font-bold">Proyektor</span></td>
+                        <td><span class="badge badge-success">Pengembalian</span></td>
+                        <td>10:15</td>
+                        <td><span class="badge badge-success">Selesai</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-edit">✏</button>
+                                <button class="btn-action btn-delete">🗑</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="text-code">#PJM003</span></td>
+                        <td>Budi Santoso</td>
+                        <td><span class="font-bold">Kamera</span></td>
+                        <td><span class="badge badge-primary">Peminjaman</span></td>
+                        <td>11:45</td>
+                        <td><span class="badge badge-warning">Dipinjam</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-edit">✏</button>
+                                <button class="btn-action btn-delete">🗑</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-</div>
-
-<!-- Action Buttons -->
-<div class="action-bar">
-    <button class="btn btn-primary">+ Peminjaman Baru</button>
-    <button class="btn btn-success">+ Pengembalian</button>
-    <button class="btn btn-secondary">Laporan</button>
-</div>
-
-<!-- Pending Requests -->
-<div class="recent-section">
-    <div class="section-header">
-        <h3>Permintaan Peminjaman Menunggu</h3>
-        <a href="#" class="link-view-all">Lihat Semua →</a>
-    </div>
-
-    <div class="table-wrapper">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Peminjam</th>
-                    <th>Alat yang Diminta</th>
-                    <th>Keperluan</th>
-                    <th>Tanggal Diminta</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="text-muted">#REQ001</span></td>
-                    <td>Mahasiswa A</td>
-                    <td>Laptop, Proyektor</td>
-                    <td>Presentasi Tugas Akhir</td>
-                    <td>29-01-2026</td>
-                    <td><span class="badge badge-warning">Menunggu</span></td>
-                    <td>
-                        <button class="btn-small btn-approve">Terima</button>
-                        <button class="btn-small btn-reject">Tolak</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="text-muted">#REQ002</span></td>
-                    <td>Mahasiswa B</td>
-                    <td>Kamera</td>
-                    <td>Dokumentasi Event</td>
-                    <td>28-01-2026</td>
-                    <td><span class="badge badge-warning">Menunggu</span></td>
-                    <td>
-                        <button class="btn-small btn-approve">Terima</button>
-                        <button class="btn-small btn-reject">Tolak</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="text-muted">#REQ003</span></td>
-                    <td>Mahasiswa C</td>
-                    <td>Sound System</td>
-                    <td>Workshop Musik</td>
-                    <td>27-01-2026</td>
-                    <td><span class="badge badge-warning">Menunggu</span></td>
-                    <td>
-                        <button class="btn-small btn-approve">Terima</button>
-                        <button class="btn-small btn-reject">Tolak</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- Recent Transactions -->
-<div class="recent-section">
-    <div class="section-header">
-        <h3>Transaksi Terakhir</h3>
-        <a href="#" class="link-view-all">Lihat Semua →</a>
-    </div>
-
-    <div class="table-wrapper">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Peminjam</th>
-                    <th>Alat</th>
-                    <th>Pinjam</th>
-                    <th>Kembali</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><span class="text-muted">#PJM001</span></td>
-                    <td>Andi Wijaya</td>
-                    <td>Laptop</td>
-                    <td>25-01-2026</td>
-                    <td>27-01-2026</td>
-                    <td><span class="badge badge-warning">Dipinjam</span></td>
-                    <td>
-                        <button class="btn-action btn-edit">✏</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="text-muted">#PJM002</span></td>
-                    <td>Sinta Kusuma</td>
-                    <td>Proyektor</td>
-                    <td>22-01-2026</td>
-                    <td>24-01-2026</td>
-                    <td><span class="badge badge-success">Dikembalikan</span></td>
-                    <td>
-                        <button class="btn-action btn-edit">✏</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 

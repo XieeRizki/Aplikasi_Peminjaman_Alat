@@ -37,8 +37,10 @@ body {
 
 .main-content {
     flex: 1;
-    padding: 30px;
+    padding: 20px 24px;
     overflow-y: auto;
+    max-width: 100%;
+    width: 100%;
 }
 
 /* Sidebar */
@@ -132,7 +134,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 12px 24px;
     background: white;
     border-bottom: 1px solid var(--border-color);
     position: relative;
@@ -248,7 +250,11 @@ body {
     }
 
     .main-content {
-        padding: 20px;
+        padding: 16px 16px;
+    }
+
+    .navbar {
+        padding: 10px 16px;
     }
 }
 
@@ -258,10 +264,14 @@ body {
     }
 
     .navbar {
-        padding: 12px 15px;
+        padding: 10px 12px;
     }
 
     .user-info {
         display: none;
+    }
+
+    .main-content {
+        padding: 12px 12px;
     }
 }
